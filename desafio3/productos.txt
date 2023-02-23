@@ -1,0 +1,20 @@
+[
+   {
+      "id": 1,
+      "title": "samsung",
+      "price": 8000,
+      "thumbnail": ""
+   },
+   {
+      "id": 2,
+      "title": "Motorola",
+      "price": 1000,
+      "thumbnail": ""
+   },
+   {
+      "id": 3,
+      "title": "Lg",
+      "price": 90000,
+      "thumbnail": ""
+   }
+]
