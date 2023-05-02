@@ -1,0 +1,718 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.container-all{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    position: relative;
+    grid-template-areas: "nav nav nav nav nav"
+                         "aside title title title title"
+                         "aside cards cards cards cards"
+                         "aside paginate paginate paginate paginate"
+                         "footer footer footer footer footer";
+}
+
+.navbar-grid{
+    grid-area: nav;
+}
+
+.filters{
+    grid-area: aside;
+}
+
+.cards-container{
+    grid-area: cards;
+}
+
+.pagination-container{
+    grid-area: paginate;
+}
+
+.footer{
+    grid-area: footer;
+}
+
+.prod-h2{
+    grid-area: title;
+}
+
+
+
+.container{
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #dce7f1;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1,
+.container h2{
+    color: rgb(0, 0, 0);
+    text-shadow: 0 0 3px rgb(255, 255, 255);
+}
+
+.form{
+    background: rgb(218,221,231);
+    background: linear-gradient(0deg, rgba(218,221,231,1) 0%, rgba(57,110,255,1) 100%); width: 90%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.452);
+}
+
+.link-register{
+    text-decoration: none;
+    color: blue;
+    transition: all .3s ease;
+    font-weight: 500;
+    font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
+}
+
+.link-register:hover{
+    color: #000000;
+}
+
+.blur{ 
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    align-content: center; 
+    backdrop-filter: blur(2px);
+    border: thin solid rgba(0, 0, 0, 0.288);
+    padding: 30px 10px;
+}
+
+input[type="password"],
+input[type="number"],
+input[type="text"]{
+    color: #000000d3;
+    width: 80%;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    background-color: rgb(255, 255, 255);
+}
+
+input[type="password"]::placeholder,
+input[type="number"]::placeholder,
+input[type="text"]::placeholder{
+    font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
+    color: #5a5a5ace;
+}
+
+input[type="submit"]{
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(57, 110, 255);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.618);
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+input[type="submit"]:hover{
+    background-color: crimson;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.418);
+}
+
+
+/**Estilos handlebars*/
+.user-img{
+    width: 30px;
+    height: 30px;
+}
+
+.new-user{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.user-name{
+    color: #fff;
+    font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
+    font-weight: 600;
+}
+
+.nav-navbar{
+   width: 100%;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    background-color: rgb(57, 110, 255);
+}
+
+.ul-navbar{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 20px 5px;
+}
+
+.li-navbar a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
+    cursor: pointer;
+}
+
+
+
+.h1-index-hbs{
+    color: rgb(255, 255, 255);
+    font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
+    text-shadow: 0 0 5px black;
+}
+
+.prod-h2{
+    margin-top: 70px;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+    color: rgb(48, 47, 51);
+}
+
+.prod-h2 b{
+    color: rgb(57, 110, 255);
+}
+
+
+.product-img{
+    width: 100%;
+    height: 200px;
+}
+
+.cards-container{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 10px;
+}
+
+.card{
+    background-color: #fff;
+    border: .3px solid rgba(0, 0, 0, 0.152);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.212);
+    padding: 20px;
+    width: 200px;
+    height: 350px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    transition: all .3s ease;
+}
+
+.card:hover{
+    transform: scale(1.05);
+    border-color: rgb(57, 110, 255);
+}
+
+.rtp-h2{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+
+
+/**estilos al chat*/
+
+.h2-chat{
+    text-align: center;
+    margin: 20px;
+}
+
+.container-mensajes{
+    overflow-y: auto;
+    margin-top: 20px;
+    width: 90%;
+    max-width: 800px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: .1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.p-mensajes-chat,
+.span-user,
+.span-message{
+    color: black;
+    font-family: monospace;
+    width: max-content;
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.span-user{
+    background-color: yellow;
+}
+
+.span-message{
+    background-color: white;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-btn-send-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.btn-send-msg{
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(28, 55, 209);
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.btn-send-msg:hover{
+    background-color: crimson;
+}
+
+.form-input-chat{
+    width: 90%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.connected{
+    background-color: rgb(187, 63, 63);
+}
+
+.input-chat{
+    border-radius: 5px;
+    border: .1px solid rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-email{
+    padding: 0; 
+}
+
+.h2-chat{
+    margin-top: 100px;
+}
+
+.input-email{
+    width: 80%;
+    max-width: 700px;
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+
+
+
+/*pagination styles*/
+.page{
+    background-color: blueviolet;
+}
+
+.price-results,
+.cant-results,
+.category-filters{
+    background-color: #ffffff;
+    padding: 20px 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.222);
+}
+
+.category-filters{
+    width: 100%;
+}
+
+/**aside*/
+.filters{
+    margin-top: 50px;
+    position: relative;
+    padding: 25px 20px;
+    background-color: rgb(28, 29, 34);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    min-height: 800px;
+    max-height: 1000px;
+}
+
+.filter-p{
+    width: 100%;
+}
+
+.filters-container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    
+}
+
+
+
+.btn-category{
+    font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
+    background: none;
+    border: none;
+    color: rgb(28, 55, 209);
+    font-weight: 600;
+    font-size: 16px;
+    text-align: left;
+    padding: 5px 10px;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .3s ease
+}
+
+.btn-category:hover{
+    background-color: rgb(28, 55, 209);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.658);
+}
+
+.cant-results{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+}
+
+.number-result{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.price-results{
+    width: 100%;
+}
+
+.show-num{
+    background: none;
+    color: rgb(28, 55, 209);
+    font-weight: 600;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    transition: all .3s ease;
+}
+
+.show-num:hover{
+    background-color: rgb(28, 55, 209);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.658);
+}
+
+.user-mail{
+    font-size: 12px;
+    color: #fff;
+}
+
+.logout{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    bottom: 20px;
+    background-color: rgb(28, 29, 34);
+}
+
+.btn-logout{
+    padding: 10px 25px;
+    background-color: crimson;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+
+.btn-logout:hover{
+    background-color: #ad0026;
+    outline: 1px solid #fff;
+}
+
+
+
+
+
+/*botones antes después y números de página*/
+
+.pagination-container{
+    margin-top: 30px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns-pages-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.btns-pages-container button{
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button.active{
+    font-size: 25px;
+    background-color: rgb(28, 55, 209); 
+    border-radius: 50%;
+    padding: 5px 10px;
+    color: #fff;
+} 
+
+.btn-before{
+    text-decoration: none;
+}
+
+.btn-after{
+    text-decoration: none;
+    order: 1;
+}
+
+
+/*home styles*/
+
+.home{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.home-btn{
+    text-decoration: none;
+}
+
+
+/*product Details styles*/
+.product-d-h1{
+    text-align: center;
+    font-family: "Segoe UI", "Segoe WP", Arial, sans-serif;
+}
+
+.product-details{
+    background: none;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-d-section{
+    margin-top: 25px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.product-d-img{
+    width: 40%;
+    height: 350px;
+}
+
+.product-d-cont-texts{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.prod-d-texts{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/*Cart styles*/
+
+.img-cart{
+    width: 100px;
+    height: 100px;
+}
+
+.cart-table{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* .cart-thead{
+    border: 1px solid black;
+}
+
+.cart-tr{
+    border: 1px solid black;
+} */
+
+.cart-th{
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    padding: 5px;
+}
+
+.cart-tr{
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.233);
+}
+
+/*Boton de autenticación por github*/
+.btn_github{
+    color: #fff;
+    background-color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    transition: all .3s ease;
+}
+
+.btn_github i{
+    font-size: 25px;
+}
+
+.btn_github:hover{
+    background-color: rgb(187, 10, 10);
+}
+
+
+
+/*footer styles**/
+
+.footer{
+    background-color: rgb(28, 29, 34);
+    color: #fff;
+    padding: 50px;
+}
+
+
+
+
+.cart-icon{
+    background-color: #ffffff75;
+    box-shadow: 0 0 3px black;
+    border-radius: 50%;
+    padding: 7px;
+    position: fixed;
+    right: 2%;
+    top: 10px;
+    z-index: 9999999999;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.cart-icon:hover{
+    background-color: #fff;
+    transform: scale(1.1);
+}
+
+
+
+.cart-icon i{
+    font-size: 25px;
+    color: #00000096;
+    transition: all .2s ease;
+}
+
+.cart-icon i:hover{
+    color: #000000;
+}
+
+.container-go-products{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn-go-products{
+    text-decoration: none;
+}
+
+.footer-h2{
+    text-align: center;
+}

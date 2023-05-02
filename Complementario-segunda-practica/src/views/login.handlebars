@@ -1,0 +1,33 @@
+ {{> navbar}}
+ <div class="container">
+    <h1>Login</h1>
+   
+    <!-- <form class="form" onsubmit="send(event)"> -->
+    <form  class="form" onsubmit="login(event)">  
+        <div class="blur">
+            
+            <input 
+                id="form-email"
+                type="text" 
+                name="form-email"
+                placeholder="Email"
+            />
+           
+            <input 
+                id="form-password"
+                type="password" 
+                name="form-password"
+                placeholder="Password"
+            />
+            
+            
+            <input type="submit" value="Iniciar Sesión"/>
+            <a href="api/auth/github" class="btn_github">Continuar con github  <i class="fa-brands fa-github"></i></a>
+            <a href="/register" class="link-register">Registrarme</a>
+        </div>
+            
+    </form>
+   
+</div>
+
+<script src="./js/login.js"></script>
