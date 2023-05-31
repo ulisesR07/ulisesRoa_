@@ -1,0 +1,141 @@
+{{#if (eq cart.products.length 0)}}
+<div id="content">
+  <div class="container mt-2">
+    <div class="row">
+      <div class="col-lg-12 ">
+        <!-- breadcrumb-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Cart</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-lg-6 mx-auto d-flex justify-content-center">
+        <div class="box " style="min-width: 300px; ">
+          <h1 class="text-center">Empty Cart</h1>
+          <img class="w-100 h-75"
+            src="https://assets.materialup.com/uploads/16e7d0ed-140b-4f86-9b7e-d9d1c04edb2b/preview.png">
+          <hr>
+          <div class="text-center">
+            <a href="/" class="btn btn-primary">Back
+              to shop</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{{else}}
+<div id="content">
+  <div class="container mt-2">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- breadcrumb-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Shopping cart</li>
+          </ol>
+        </nav>
+      </div>
+      <div id="basket" class="col-lg-9">
+        <div class="box">
+          <form method="" action="">
+            <h1>Shopping cart</h1>
+            <p class="text-muted">You currently have {{cart.products.length}} item(s) in your cart.</p>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th colspan="2">Product</th>
+                    <th>Quantity</th>
+                    <th>Unit price</th>
+                    <th>Discount</th>
+                    <th colspan="2">Sub-Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each cart.products}}
+                  <tr>
+                    <td><a href="/view/product/{{product._id}}"><img src="/img/{{product.thumbnails.[0]}}"
+                          alt="img of {{product.title}}"></a></td>
+                    <td><a href="/view/product/{{product._id}}">{{product.title}}</a></td>
+                    <td>
+                      <input type="number" value="{{quantity}}" class="form-control" min="1" max="{{product.stock}}"
+                        data-cart-id="{{../cart._id}}" data-product-id="{{product._id}}"
+                        data-product-stock="{{product.stock}}" onchange="updateProductQuantity(this, event)" />
+                    </td>
+                    <td>${{product.price}}</td>
+                    <td>$0.00</td>
+                    <td class="product-subtotal">${{multiply quantity product.price}}</td>
+                    <td><button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
+                        title="Remove item" onclick="deleteProduct('{{../cart._id}}', '{{this.product._id}}')">
+                        X
+                      </button></td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+                <tfoot>
+                  <tr class="box-header">
+                    <th colspan="5">Total</th>
+                    <th colspan="2" class="cart-total">${{total cart}}</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.table-responsive-->
+            <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+              <div class="left"><a href="/" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>
+                  Continue shopping</a></div>
+              <div class="right">
+                <button class="btn btn-outline-secondary" onclick="emptyCart('{{cart._id}}')"> Empty cart</button>
+                <button type="" class="btn btn-primary" onclick="proceedToCheckout('{{cart._id}}')">Proceed to checkout
+                  <i class="fa fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- /.box-->
+      </div>
+      <!-- /.col-lg-9-->
+      <div class="col-lg-3">
+        <div id="order-summary" class="box">
+          <div class="box-header">
+            <h3 class="mb-0">Order summary</h3>
+          </div>
+          <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Order subtotal</td>
+                  <th>${{total cart}}</th>
+                </tr>
+                <tr>
+                  <td>Shipping and handling</td>
+                  <th>$0.00</th>
+                </tr>
+                <tr>
+                  <td>Tax</td>
+                  <th>$0.00</th>
+                </tr>
+                <tr class="total">
+                  <td>Total</td>
+                  <th>${{total cart}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-3-->
+    </div>
+  </div>
+</div>
+{{/if}}
+<script src="/js/cart.js"></script>
+{{!--
+<script src="../lib/helpers.handlebars.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

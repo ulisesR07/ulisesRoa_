@@ -1,0 +1,113 @@
+{{!-- <div class="hero-image container mt-3">
+  <div class="card p-5 ">
+    <h2 class="text-center">
+      Welcome
+      {{user.name}}
+    </h2>
+    <div class="hero-text row mt-4 profileContainer d-flex">
+
+      <div class="p-3 card w-25 col-6 custom-card">
+        <h3 class="mt-3">Your Personal Data</h3>
+        <p>
+          Name:
+          {{user.name}}
+        </p>
+        <p>
+          Lastname:
+          {{user.lastname}}
+        </p>
+        <p>Email:
+          {{user.email}}
+        </p>
+      </div>
+
+      <div class="p-3 card w-25 col-6 custom-card">
+        <h3 class="mt-3">Your Cart Data</h3>
+        {{#if cartLength}}
+        <p>
+          You have {{cartLength}} items in your cart.
+        </p>
+        <a class="btn btn-primary" href="/view/cart/{{user.cartId._id}}" class="btn btn-primary">Go to cart</a>
+        {{else}}
+        <p>
+          Your cart is empty. <a href="/">Go to products</a>
+        </p>
+
+        {{/if}}
+      </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary" class="logout" id="logout">Logout</button>
+  </div>
+</div> --}}
+
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- breadcrumb-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li aria-current="page" class="breadcrumb-item"><a href="#">User Section</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-lg-3">
+        <!-- CUSTOMER MENU -->
+        <div class="card sidebar-menu">
+          <div class="card-header">
+            <h3 class="h4 card-title">Welcome {{user.name}}</h3>
+          </div>
+          <div class="card-body">
+            <ul class="nav nav-pills flex-column">
+              <li class="mb-2"><a href="#" class="nav-link active "><i class="fa fa-list"></i> My orders</a></li>
+              <li class="mb-2"><a href="#" class="nav-link active "><i class="fa fa-heart"></i> My wishlist</a></li>
+              <li class="mb-2"><a href="/view/cart/{{user.cartId._id}}" class="nav-link active text-left w-100"><i
+                    class="fa fa-user"></i> My cart</a></li>
+              <li class="mb-2"><a type="submit" class="nav-link active text-left w-100" id="logout"><i
+                    class="fa fa-sign-out"></i>Logout</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.col-lg-3-->
+        <!--  CUSTOMER MENU END -->
+      </div>
+      <div id="customer-order" class="col-lg-9">
+        <div class="box">
+          <h1>Orders </h1>
+          </p>
+          <p class="text-muted">If you have any questions, please feel free to <a href="/chat">contact us</a>,
+            our customer service center is working for you 24/7.</p>
+          <hr>
+          <div class="table-responsive mb-4">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Code</th>
+                  <th>Date</th>
+                  <th>Total</th>
+                  <th>View</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each tickets }}
+                <tr>
+                  <td>{{this.order}}</td>
+                  <td>{{this.code}}</td>
+                  <td>{{this.purchase_datetime}}</td>
+                  <td>{{this.amount}}</td>
+                  <td><a href="/view/purchase/{{this.code}}" class="btn btn-primary btn-sm">View</a></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.table-responsive-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/logout.js"></script>

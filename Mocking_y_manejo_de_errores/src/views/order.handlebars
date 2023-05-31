@@ -1,0 +1,118 @@
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- breadcrumb-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li aria-current="page" class="breadcrumb-item"><a href="#">My
+                orders</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Order #{{ticket.code}}</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-lg-3">
+        <!-- CUSTOMER MENU -->
+        <div class="card sidebar-menu">
+          <div class="card-header">
+            <h3 class="h4 card-title">Welcome {{userObject.name}}</h3>
+          </div>
+          <div class="card-body">
+            <ul class="nav nav-pills flex-column">
+              <li class="mb-2"><a href="/profile" class="nav-link active"><i
+                    class="fa fa-list"
+                  ></i>
+                  My orders</a></li>
+              <li class="mb-2"><a href="#" class="nav-link active"><i
+                    class="fa fa-heart"
+                  ></i>
+                  My wishlist</a></li>
+              <li class="mb-2"><a
+                  href="/view/cart/{{user.cartId._id}}"
+                  class="nav-link active text-left w-100"
+                ><i class="fa fa-user"></i> My cart</a></li>
+              <li class="mb-2"><a
+                  type="submit"
+                  class="nav-link active text-left w-100"
+                  id="logout"
+                ><i class="fa fa-sign-out"></i>Logout</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.col-lg-3-->
+        <!--  CUSTOMER MENU END -->
+      </div>
+      <div id="customer-order" class="col-lg-9">
+        <div class="box">
+<h1>Order # <h4><strong>{{ticket.code}}</strong></h4></h1>
+<p class="lead">The order was placed on {{ticket.date}}.</p>
+          <p class="text-muted">If you have any questions, please feel free to
+            <a href="/chat">contact us</a>, our customer service center is
+            working for you 24/7.</p>
+          <hr />
+          <div class="table-responsive mb-4">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th colspan="2">Product</th>
+                  <th>Quantity</th>
+                  <th>Unit price</th>
+                  <th>Discount</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each ticket.purchasedProducts}}
+                  <tr>
+                    <td><a href="/view/product/{{this._id}}"><img
+                          src="/img/{{thumbnails.[0]}}"
+                          alt="White Blouse Armani"
+                        /></a></td>
+                    <td><a href="/view/product/{{this._id}}">{{this.title}}</a></td>
+                    <td>{{this.quantity}}</td>
+                    <td>${{this.price}}</td>
+                    <td>$0.00</td>
+                    <td>${{multiply this.quantity this.price}}</td>
+                  </tr>
+                {{/each}}
+
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="5" class="text-right">Order subtotal</th>
+                  <th>${{ticket.amount}}</th>
+                </tr>
+                <tr>
+                  <th colspan="5" class="text-right">Shipping and handling</th>
+                  <th>$0.00</th>
+                </tr>
+                <tr>
+                  <th colspan="5" class="text-right">Tax</th>
+                  <th>$0.00</th>
+                </tr>
+                <tr>
+                  <th colspan="5" class="text-right">Total</th>
+                  <th>${{ticket.amount}}</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.table-responsive-->
+          <div class="row addresses">
+            <div class="col-lg-6">
+              <h2>Invoice data</h2>
+              <p>{{ticket.purchaser}}<br />13/25 New Avenue<br />New Heaven<br
+                />45Y 73J<br />England<br />Great Britain</p>
+            </div>
+            <div class="col-lg-6">
+              <h2>Shipping address</h2>
+              <p>John Brown<br />13/25 New Avenue<br />New Heaven<br />45Y 73J<br
+                />England<br />Great Britain</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
