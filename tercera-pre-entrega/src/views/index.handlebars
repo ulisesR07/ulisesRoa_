@@ -1,0 +1,129 @@
+<div id="content">
+  <div class="container mt-2" id="user-data" data-user="{{ cartId }}">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- breadcrumb-->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Store</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-lg-3">
+        <!-- MENUS AND FILTERS -->
+        <div class="card sidebar-menu mb-4">
+          <div class="card-header">
+            <h3 class="h4 card-title">Filters</h3>
+          </div>
+          <div class="card-body">
+            <ul class="nav nav-pills flex-column category-menu">
+              <li>
+                <p class="nav-link active">Order by</p>
+                <ul class="list-unstyled mb-3">
+                  <li><a onclick='resetFilters()' class="nav-link">Reset</a></li>
+                  <li><a onclick='setDisp(true)' class="nav-link">Available</a></li>
+                  <li><a onclick='setDisp(false)' class="nav-link">Unavailable</a></li>
+                  <li><a onclick='setOrder("price", "desc")' class="nav-link">Price: high to high</a></li>
+                  <li><a onclick='setOrder("price", "asc")' class="nav-link">Price: low to low</a></li>
+                  <li><a onclick='setOrder("title", "asc")' class="nav-link">Name: A to Z</a></li>
+                  <li><a onclick='setOrder("title", "desc")' class="nav-link">Name: Z to A</a></li>
+                </ul>
+              </li>
+              <li>
+                <p class="nav-link active">Categories</p>
+                <ul class="list-unstyled">
+                  <li><a onclick="setCategory('')" class="nav-link">All</a></li>
+                  <li><a onclick="setCategory('T-shirts')" class="nav-link">T-shirts</a></li>
+                  <li><a onclick="setCategory('Jackets')" class="nav-link">Jackets</a></li>
+                  <li><a onclick="setCategory('Pants')" class="nav-link">Pants</a></li>
+                  <li><a onclick="setCategory('Dresses')" class="nav-link">Dresses</a></li>
+                  <li><a onclick="setCategory('Sweaters')" class="nav-link">Sweaters</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--  MENUS AND FILTERS END -->
+      </div>
+      <div class="col-lg-9">
+        <div class="box info-bar">
+          <div class="row">
+            <div class="col-md-12 col-lg-4 products-showing">Showing <strong>{{page}}</strong> of
+              <strong>{{pages}}</strong> Pages</div>
+            <div class="col-md-12 col-lg-7 products-number-sort">
+              <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row">
+                <div class="products-number"><strong>Show</strong>
+                  <p onclick="setLimit(12)" class="btn btn-sm btn-primary">12</p>
+                  <p onclick="setLimit(24)" class="btn btn-outline-secondary btn-sm">24</p>
+                  <p onclick="setLimit(999)" class="btn btn-outline-secondary btn-sm">All</p><strong> Products</strong>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row products">
+          {{#each products}}
+          <div class="col-lg-4 col-md-6">
+            <div class="product" data-product-id="{{this._id}}">
+              <div class="flip-container">
+                <div class="flipper">
+                  <div class="front"><img src="/img/{{thumbnails.[0]}}" alt="image of {{this.title}}" class="img-fluid">
+                  </div>
+                  <div class="back"><img src="/img/{{thumbnails.[1]}}" alt="image of {{this.title}}" class="img-fluid">
+                  </div>
+                </div>
+              </div><a href="/view/product/{{this._id}}" class="invisible"><img src="/img/{{thumbnails.[0]}}"
+                  alt="image of {{this.title}}" class="img-fluid"></a>
+              {{#if this.status}}
+              <span class="status available badge badge-success mb-2 w-100">In Stock</span>
+              {{else}}
+              <span class="status not-available badge badge-danger mb-2 w-100">Out of Stock</span>
+              {{/if}}
+              <div class="text">
+                <h3><a href="/view/product/{{this._id}}">{{this.title}}</a></h3>
+                <p class="price">
+                  <del></del>${{this.price}}
+                </p>
+                <p class="buttons"><a href="/view/product/{{this._id}}" class="btn btn-outline-secondary">View
+                    detail</a>
+                  <button class="btn btn-primary cart-btn" {{#unless this.status}}disabled{{/unless}}
+                    data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                    <i class="fa fa-shopping-cart"></i>Add to cart
+                  </button>
+              </div>
+              <!-- text-->
+            </div>
+            <!-- /.product  -->
+          </div>
+          {{/each}}
+          <!-- /.products-->
+        </div>
+        <div class="pages d-flex justify-content-center">
+          <ul class="pagination">
+            {{#if hasPrevPage}}
+            <li class="page-item">
+              <p onclick='setPrev()' aria-label="Previous" class="page-link"><span aria-hidden="true">«</span><span
+                  class="sr-only">Previous</span></p>
+            </li>
+            {{/if}}
+            <li class="page-item active">
+              <p href="#" class="page-link">{{page}} of {{pages}}</p>
+            </li>
+            {{#if hasNextPage}}
+            <li class="page-item">
+              <p onclick='setNext()' aria-label="Next" class="page-link"><span aria-hidden="true">»</span><span
+                  class="sr-only">Next</span></p>
+            </li>
+            {{/if}}
+          </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /.col-lg-9-->
+    </div>
+  </div>
+</div>
+<script src="js/index.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

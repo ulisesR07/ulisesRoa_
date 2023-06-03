@@ -1,0 +1,6 @@
+node_modules/
+.env
+backup/
+output/
+purgecss.config.js
+.vscode
